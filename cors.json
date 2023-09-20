@@ -1,0 +1,12 @@
+[
+  {
+    "origin": [
+      "https://localhost:4200",
+      "http://localhost:4200",
+      "https://conectium-app-m5fqvovgfq-uc.a.run.app/"
+    ],
+    "method": ["GET", "POST", "DELETE", "PUT", "PATCH"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]
