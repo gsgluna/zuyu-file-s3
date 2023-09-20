@@ -4,12 +4,15 @@ import { S3 } from 'aws-sdk';
 
 @Injectable()
 export class AwsService {
+  getHello(): string {
+    return 'Controller OK';
+  }
   constructor(private configService: ConfigService) {}
 
-  bucketName = this.configService.get('AWS_BUCKET_NAME');
+  bucketName = 'zuyubucket';
   s3 = new S3({
-    accessKeyId: this.configService.get('ACCESS_ID'),
-    secretAccessKey: this.configService.get('AWS_SECRET_KEY'),
+    accessKeyId: 'AKIAS4XS47DO2FU7VLUZ',
+    secretAccessKey: '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',
   });
 
   async uploadPublicFile(dataBuffer: Buffer, filename: string) {

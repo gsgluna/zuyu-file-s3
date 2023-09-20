@@ -1,27 +1,34 @@
 import {
-  Controller,
-  Delete,
-  Param,
-  Post,
-  UploadedFile,
-  UseInterceptors,
-} from '@nestjs/common';
-import { AwsService } from './aws.service';
-import { Express } from 'express';
-import { FileInterceptor } from '@nestjs/platform-express';
-
-@Controller('aws')
-export class AwsController {
-  constructor(private readonly awsService: AwsService) {}
-
-  @Post()
-  @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return this.awsService.uploadPublicFile(file.buffer, file.originalname);
+    Controller,
+    Delete,
+    Param,
+    Post,
+    UploadedFile,
+    UseInterceptors,
+    Get,
+  } from '@nestjs/common';
+  import { AwsService } from './aws.service';
+  import { Express } from 'express';
+  import { FileInterceptor } from '@nestjs/platform-express';
+  
+  @Controller('aws')
+  export class AwsController {
+    constructor(private readonly awsService: AwsService) {}
+  
+    @Get()
+    getHello(): string {
+      return this.awsService.getHello();
+    }
+    
+    
+    @Post()
+    @UseInterceptors(FileInterceptor('file'))
+    async uploadFile(@UploadedFile() file: Express.Multer.File) {
+      return this.awsService.uploadPublicFile(file.buffer, file.originalname);
+    }
+  
+    @Delete('/:key')
+    async deleteFile(@Param('key') fileKey: string) {
+      return this.awsService.deletePublicFile(fileKey);
+    }
   }
-
-  @Delete('/:key')
-  async deleteFile(@Param('key') fileKey: string) {
-    return this.awsService.deletePublicFile(fileKey);
-  }
-}
