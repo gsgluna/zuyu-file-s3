@@ -1,13 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AwsModule } from './aws/aws.module';
-import { AwsController } from './aws/aws.controller';
-import { AwsService } from './aws/aws.service';
-
+import { AppService } from './app.service';
+import { StorageModule } from './storage/storage.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AwsModule],
-  controllers: [AwsController],
-  providers: [AwsService],
+  imports: [StorageModule, MediaModule],
+  providers: [AppService],
 })
 export class AppModule {}
