@@ -56,4 +56,12 @@ import {
       res.setHeader("Cache-Control", "max-age=60d");
       res.end(storageFile.buffer);
     }
+
+     @Get('hello')
+       {
+           return 'Ola, mundo!';
+       }
+
+
+      
   }
