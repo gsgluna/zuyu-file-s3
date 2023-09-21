@@ -57,11 +57,5 @@ import {
       res.end(storageFile.buffer);
     }
 
-     @Get('hello')
-       {
-           return 'Ola, mundo!';
-       }
-
-
-      
+         
   }
